@@ -44,4 +44,12 @@ public class EmployeeController {
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @RequestBody Employee employee) {
         return new ResponseEntity<>(employeeService.updateEmployee(employee, id), HttpStatus.OK);
     }
+
+    //Now that the put works, let's try deleting (should be interesting)
+    //Not bothering with a JSON response or rebuilding the employee at the moment.
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") long id) {
+        employeeService.deleteEmployee(id);
+        return new ResponseEntity<String>("Employee deleted successfully!", HttpStatus.OK);
+    }
 }
