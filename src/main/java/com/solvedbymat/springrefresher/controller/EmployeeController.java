@@ -38,4 +38,10 @@ public class EmployeeController {
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") long employeeId) {
         return new ResponseEntity<Employee>(employeeService.getEmployeeById(employeeId), HttpStatus.OK);
     }
+
+    //Now we try update a field using put
+    @PutMapping({"{id}"})
+    public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @RequestBody Employee employee) {
+        return new ResponseEntity<>(employeeService.updateEmployee(employee, id), HttpStatus.OK);
+    }
 }

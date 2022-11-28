@@ -30,4 +30,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployeeById(long id) {
         return employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee", "Id", id));
     }
+
+    public Employee updateEmployee(Employee employee, long id) {
+        Employee existing = employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee", "Id", id));
+        existing.setFirstName(employee.getFirstName());
+        existing.setLastName(employee.getLastName());
+        existing.setEmail(employee.getEmail());
+        // if I remember, this saves and maps to db
+
+        employeeRepository.save(existing);
+        return existing;
+    }
 }
